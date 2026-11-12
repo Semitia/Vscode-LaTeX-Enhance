@@ -1,0 +1,17 @@
+{
+  "name": "vscode-latex-enhance",
+  "version": "0.6.0",
+  "private": true,
+  "description": "PDF viewer enhancements for LaTeX Workshop: zoom, translation and Codex excerpts",
+  "scripts": {
+    "test": "node scripts/test.cjs",
+    "test:browser": "node tests/browser-check.mjs",
+    "package": "node scripts/package.cjs",
+    "install:local": "node scripts/package.cjs --install"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Semitia/Vscode-LaTeX-Enhance.git"
+  }
+}

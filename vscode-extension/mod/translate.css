@@ -1,0 +1,51 @@
+#surgeriiPdfTranslation {
+    position: fixed;
+    z-index: 100001;
+    width: max-content;
+    min-width: min(180px, calc(100vw - 24px));
+    max-width: min(420px, calc(100vw - 24px));
+    max-height: min(340px, calc(100vh - 24px));
+    box-sizing: border-box;
+    overflow: auto;
+    border: 1px solid #c7cdd4;
+    border-radius: 8px;
+    background: #fff;
+    color: #1f2328;
+    box-shadow: 0 4px 22px #0003;
+    font: 14px/1.65 system-ui, sans-serif;
+    user-select: text;
+    cursor: text;
+}
+#surgeriiPdfTranslation[hidden] { display: none; }
+#surgeriiPdfTranslation .surgerii-translation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 5px 9px 4px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #697481;
+    font-size: 11px;
+}
+#surgeriiPdfTranslation button {
+    border: 0;
+    padding: 0 5px;
+    border-radius: 3px;
+    background: transparent;
+    color: inherit;
+    font: 20px/1.2 system-ui, sans-serif;
+    cursor: pointer;
+}
+#surgeriiPdfTranslation button:hover { background: #e5e7eb; }
+#surgeriiPdfTranslation .surgerii-translation-output {
+    padding: 10px 13px 12px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+#surgeriiPdfTranslation[data-error="true"] .surgerii-translation-output { color: #a12525; }
+@media (prefers-color-scheme: dark) {
+    #surgeriiPdfTranslation { background: #24292f; color: #e6edf3; border-color: #57616b; }
+    #surgeriiPdfTranslation .surgerii-translation-header { color: #a9b4c0; border-color: #444c56; }
+    #surgeriiPdfTranslation button:hover { background: #444c56; }
+    #surgeriiPdfTranslation[data-error="true"] .surgerii-translation-output { color: #ffb4b4; }
+}

@@ -1,0 +1,24 @@
+const assert = require('node:assert/strict');
+const {createTranslator} = require('../vscode-extension/translation.cjs');
+(async () => {
+ const values = {provider:'openai', endpoint:'https://example.com/v1/chat/completions', model:'gpt-4.1-mini'};
+ const vscode = {workspace:{getConfiguration:()=>({get:(k,d)=>values[k]??d})}};
+ const calls=[];
+ const runner=async (python,script,payload)=>{calls.push({script,payload});return {translation:'译文'};};
+ const secrets={get:async key=>key==='translation.apiKey:'+values.endpoint?'test-only':undefined};
+ const translate=createTranslator(vscode,__dirname,runner,secrets);
+ await Promise.all([translate({text:'robot'}),translate({text:'robot'})]);
+ assert.equal(calls.length,1);
+ assert.ok(calls[0].script.endsWith('ai_translate.py'));
+ assert.equal(calls[0].payload.apiKey,'test-only');
+ assert.equal((await translate({text:'robot'})).cached,true);
+ values.provider='google';await translate({text:'robot'});
+ assert.ok(calls[1].script.endsWith('google_translate.py'));
+ assert.equal(calls[1].payload.apiKey,undefined);
+ values.provider='openai';values.model='gpt-4o-mini';await translate({text:'robot'});
+ assert.equal(calls.length,3);
+ const missing=createTranslator(vscode,__dirname,runner,{get:async()=>undefined});
+ await assert.rejects(missing({text:'robot'}),/设置 AI 翻译密钥/);
+ values.endpoint='http://example.com';await assert.rejects(translate({text:'robot'}),/HTTPS/);
+ console.log('PASS: AI routing, endpoint-scoped secret, deduplication, provider/model cache isolation, Google without credentials, missing secret and HTTPS validation.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

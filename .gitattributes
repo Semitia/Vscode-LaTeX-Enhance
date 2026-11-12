@@ -1,0 +1,4 @@
+*.pdf binary
+# These imported assets preserve exact bytes for legacy patch matching.
+vscode-extension/mod/legacy-inline-style.txt whitespace=-blank-at-eof
+vscode-extension/mod/zoom.css whitespace=-blank-at-eof

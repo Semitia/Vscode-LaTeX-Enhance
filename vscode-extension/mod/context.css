@@ -1,0 +1,16 @@
+#surgeriiPdfContextStatus {
+    position: fixed;
+    z-index: 100000;
+    right: 16px;
+    bottom: 20px;
+    max-width: min(440px, calc(100vw - 48px));
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: #253746;
+    color: #fff;
+    box-shadow: 0 2px 10px #0004;
+    font: 13px/1.5 system-ui, sans-serif;
+    pointer-events: none;
+}
+#surgeriiPdfContextStatus[hidden] { display: none; }
+#surgeriiPdfContextStatus[data-error="true"] { background: #8b3030; }

@@ -1,0 +1,58 @@
+/* Local customization: slider, editable percentage, and preset arrow in one row. */
+#scaleSelectContainer {
+    position: relative;
+    width: 300px;
+    min-width: 300px;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+#scaleSelect {
+    color: transparent;
+    background: transparent;
+}
+
+#scaleSelect option {
+    color: var(--main-color);
+}
+
+#localZoomSlider {
+    position: absolute;
+    inset-inline-start: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 190px;
+    margin: 0;
+    accent-color: #007acc;
+    cursor: pointer;
+}
+
+#localZoomInput {
+    position: absolute;
+    inset-inline-start: 204px;
+    top: 0;
+    box-sizing: border-box;
+    width: 72px;
+    height: 100%;
+    padding: 0 4px;
+    border: 0;
+    border-radius: 2px;
+    outline-offset: -2px;
+    font: inherit;
+    color: var(--main-color);
+    background: transparent;
+}
+
+@media all and (max-width: 900px) {
+    #scaleSelectContainer {
+        width: 220px;
+        min-width: 220px;
+    }
+    #localZoomSlider {
+        width: 110px;
+    }
+    #localZoomInput {
+        inset-inline-start: 124px;
+    }
+}
+

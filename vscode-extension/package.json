@@ -1,0 +1,139 @@
+{
+  "name": "latex-workshop-zoom-mod",
+  "displayName": "VS Code LaTeX Enhance",
+  "description": "PDF 缩放、Google / AI / LibreTranslate 划词翻译，以及 PDF 选区加入 Codex。",
+  "publisher": "surgerii-local",
+  "version": "0.6.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "license": "MIT",
+  "main": "./extension.cjs",
+  "extensionKind": [
+    "workspace"
+  ],
+  "activationEvents": [
+    "onCommand:surgeriiZoom.apply",
+    "onCommand:surgeriiZoom.restore",
+    "onCommand:surgeriiZoom.status",
+    "onCommand:surgeriiZoom.addPdfSelection",
+    "onCommand:surgeriiZoom.translatePdfSelection",
+    "onCommand:surgeriiZoom.setTranslationApiKey",
+    "onCommand:surgeriiZoom.selectTranslationProvider"
+  ],
+  "contributes": {
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "surgeriiZoom.addPdfSelection",
+          "when": "false"
+        },
+        {
+          "command": "surgeriiZoom.translatePdfSelection",
+          "when": "false"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "surgeriiZoom.addPdfSelection",
+        "title": "VS Code LaTeX Enhance: 将 PDF 选区加入 Codex"
+      },
+      {
+        "command": "surgeriiZoom.apply",
+        "title": "VS Code LaTeX Enhance: 应用 / 重新应用补丁"
+      },
+      {
+        "command": "surgeriiZoom.restore",
+        "title": "VS Code LaTeX Enhance: 移除补丁"
+      },
+      {
+        "command": "surgeriiZoom.status",
+        "title": "VS Code LaTeX Enhance: 查看状态"
+      },
+      {
+        "command": "surgeriiZoom.translatePdfSelection",
+        "title": "VS Code LaTeX Enhance: 翻译 PDF 选区"
+      },
+      {
+        "command": "surgeriiZoom.setTranslationApiKey",
+        "title": "VS Code LaTeX Enhance: 设置 AI 翻译密钥"
+      },
+      {
+        "command": "surgeriiZoom.selectTranslationProvider",
+        "title": "VS Code LaTeX Enhance: 切换翻译服务"
+      }
+    ],
+    "configuration": {
+      "title": "VS Code LaTeX Enhance",
+      "properties": {
+        "surgeriiZoom.translation.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "划选 PDF 正文后显示译文。修改后重新打开 PDF。"
+        },
+        "surgeriiZoom.translation.targetLanguage": {
+          "type": "string",
+          "default": "zh-CN",
+          "description": "翻译目标语言，如 zh-CN、en、ja。"
+        },
+        "surgeriiZoom.translation.pythonPath": {
+          "type": "string",
+          "default": "python3",
+          "description": "Python 3 可执行程序路径。WSL 通常使用 python3，无需安装额外 Python 包。"
+        },
+        "surgeriiZoom.translation.proxy": {
+          "type": "string",
+          "default": "",
+          "description": "可选的 HTTP/HTTPS 代理地址。留空时使用 VS Code http.proxy 或环境代理。"
+        },
+        "surgeriiZoom.translation.provider": {
+          "type": "string",
+          "enum": [
+            "google",
+            "openai",
+            "libretranslate"
+          ],
+          "default": "google",
+          "description": "翻译服务：Google、OpenAI 兼容接口或局域网 LibreTranslate。",
+          "scope": "application"
+        },
+        "surgeriiZoom.translation.endpoint": {
+          "type": "string",
+          "default": "https://api.openai.com/v1/chat/completions",
+          "description": "AI 翻译完整 HTTPS 接口地址。密钥按接口地址独立保存。",
+          "scope": "application"
+        },
+        "surgeriiZoom.translation.model": {
+          "type": "string",
+          "default": "gpt-4.1-mini",
+          "description": "AI 翻译模型。",
+          "scope": "application"
+        },
+        "surgeriiZoom.translation.libreEndpoint": {
+          "type": "string",
+          "default": "http://127.0.0.1:5000/translate",
+          "scope": "application",
+          "description": "LibreTranslate 完整翻译接口地址，直接连接，不经过代理。"
+        },
+        "surgeriiZoom.translation.libreSourceLanguage": {
+          "type": "string",
+          "default": "en",
+          "scope": "application",
+          "description": "LibreTranslate 源语言，默认 en；可用 auto 自动识别。"
+        }
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Semitia/Vscode-LaTeX-Enhance.git"
+  },
+  "homepage": "https://github.com/Semitia/Vscode-LaTeX-Enhance#readme",
+  "bugs": {
+    "url": "https://github.com/Semitia/Vscode-LaTeX-Enhance/issues"
+  }
+}
